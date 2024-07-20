@@ -19,7 +19,90 @@ To install `sysbenchinfo`, use pip:
 pip install SysBenchInfo
 ```
 
+Certainly! Here’s a detailed example of how to use the `sysbenchinfo` package, demonstrating its various functionalities:
 
+### Example Usage
+
+#### 1. Basic Usage
+
+```python
+from sysbenchinfo import fetch_info
+
+# Specify which parameters you want to fetch
+requested_params = ['cpu', 'gpu', 'memory', 'os', 'python', 'java', 'benchmarks']
+
+# Fetch the requested system information
+system_info = fetch_info(requested_params)
+
+# Print the information in a human-readable format
+for title, data in system_info.items():
+    print(f"\n{title}\n")
+    if isinstance(data, str):
+        print(data)
+    elif isinstance(data, dict):
+        for key, value in data.items():
+            print(f"{key}: {value}")
+    elif isinstance(data, list):
+        for item in data:
+            for key, value in item.items():
+                print(f"{key}: {value}")
+            print("-" * 40)
+```
+
+#### 2. Using Specific Functions
+
+If you only need specific information, you can directly call individual functions:
+
+```python
+from sysbenchinfo import get_cpu_info, get_gpu_info, get_memory_info, get_os_info, get_python_version, get_java_version, get_benchmarks
+
+# Fetch specific information
+cpu_info = get_cpu_info()
+gpu_info = get_gpu_info()
+memory_info = get_memory_info()
+os_info = get_os_info()
+python_version = get_python_version()
+java_version = get_java_version()
+benchmarks = get_benchmarks()
+
+# Print CPU Information
+print("CPU Information:")
+for key, value in cpu_info.items():
+    print(f"{key}: {value}")
+
+# Print GPU Information
+print("\nGPU Information:")
+if isinstance(gpu_info, str):
+    print(gpu_info)
+else:
+    for gpu in gpu_info:
+        for key, value in gpu.items():
+            print(f"{key}: {value}")
+        print("-" * 40)
+
+# Print Memory Information
+print("\nMemory Information:")
+for key, value in memory_info.items():
+    print(f"{key}: {value}")
+
+# Print OS Information
+print("\nOS Information:")
+for key, value in os_info.items():
+    print(f"{key}: {value}")
+
+# Print Python Version
+print("\nPython Version:")
+print(python_version)
+
+# Print Java Version
+print("\nJava Version:")
+print(java_version)
+
+# Print Benchmarks
+print("\nBenchmark Results:")
+for key, value in benchmarks.items():
+    print(f"{key}: {value}")
+```
 ### Example Output
 
 ```plaintext
@@ -275,4 +358,13 @@ Benchmark Results
 - **`get_java_version()`**: Returns the Java version.
 - **`get_benchmarks()`**: Returns benchmark results for CPU and GPU.
 - **`fetch_info(requested_params)`**: Fetches specific parameters based on the provided list of requests.
+
+
+### Summary
+
+- **`fetch_info(requested_params)`**: Allows you to fetch a specific set of system parameters. You pass a list of strings indicating which parameters you want (`'cpu'`, `'gpu'`, `'memory'`, `'os'`, `'python'`, `'java'`, `'benchmarks'`).
+
+- **Direct Functions**: Use `get_cpu_info()`, `get_gpu_info()`, `get_memory_info()`, `get_os_info()`, `get_python_version()`, `get_java_version()`, and `get_benchmarks()` to fetch and print specific types of system information.
+
+Each function and example shows how to fetch and display different types of system information in a user-friendly format. Adjust the example based on your specific requirements or the format you prefer.
 
