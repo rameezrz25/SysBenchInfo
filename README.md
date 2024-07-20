@@ -1,7 +1,3 @@
-Sure! Here's a rephrased version for `sysbenchinfo`:
-
----
-
 # SysBenchInfo
 
 `sysbenchinfo` is a Python package designed to provide comprehensive details about your system's CPU, GPU, memory, and operating system. Additionally, it includes basic benchmarks for both the CPU and GPU.
