@@ -19,7 +19,7 @@ Sure! Here's a rephrased version for `sysbenchinfo`:
 To install `sysbenchinfo`, use pip:
 
 ```sh
-pip install sysbenchinfo
+pip install SysBenchInfo
 ```
 
 ## Usage
