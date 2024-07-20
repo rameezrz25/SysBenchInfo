@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="SysBenchInfo",
-    version="0.1.1",
+    version="0.1.2",
     description="A package to get system information and benchmark CPU and GPU for all operating systems",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -13,6 +13,8 @@ setup(
     install_requires=[
         "psutil",
         "GPUtil",
+        "tabulate",
+
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

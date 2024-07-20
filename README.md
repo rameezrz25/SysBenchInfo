@@ -1,6 +1,6 @@
 # SysBenchInfo
 
-`sysbenchinfo` is a Python package designed to provide comprehensive details about your system's CPU, GPU, memory, and operating system. Additionally, it includes basic benchmarks for both the CPU and GPU.
+`sysbenchinfo` is a Python package designed to provide comprehensive details about your system's CPU, GPU, memory, and operating system. Additionally, it includes basic benchmarks for both the CPU and GPU, with support for retrieving specific system parameters upon request.
 
 ## Features
 
@@ -9,6 +9,7 @@
 - Access memory statistics including virtual and swap memory.
 - Retrieve OS details including system, node, release, version, machine, and processor.
 - Run simple benchmarks to measure CPU and GPU performance.
+- Fetch specific parameters of the system based on user requests.
 
 ## Installation
 
@@ -26,11 +27,50 @@ Here is an example of how to use `sysbenchinfo` in a Python environment:
 C:\Users\humai\Downloads\Rameez\SysBenchInfo\dist>python
 Python 3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
->>> from sysbenchinfo import get_system_info
+>>> from sysbenchinfo import fetch_info
 >>>
->>> info = get_system_info()
->>> print(info)
-{'cpu': {'architecture': 'AMD64', 'model': 'Intel64 Family 6 Model 186 Stepping 2, GenuineIntel', 'count': 12, 'frequency': {'current': 2100.0, 'min': 0.0, 'max': 2100.0}}, 'gpu': [{'id': 0, 'name': 'NVIDIA GeForce RTX 3050 6GB Laptop GPU', 'load': 0.0, 'free_memory': 6017.0, 'used_memory': 0.0, 'total_memory': 6144.0, 'temperature': 45.0}], 'memory': {'virtual_memory': {'total': 16802922496, 'available': 6167236608, 'percent': 63.3, 'used': 10635685888, 'free': 6167236608}, 'swap_memory': {'total': 3087007744, 'used': 100864000, 'free': 2986143744, 'percent': 3.3, 'sin': 0, 'sout': 0}}, 'os': {'system': 'Windows', 'node': 'Victus_HumaiRA', 'release': '11', 'version': '10.0.22631', 'machine': 'AMD64', 'processor': 'Intel64 Family 6 Model 186 Stepping 2, GenuineIntel'}, 'benchmarks': {'cpu_benchmark': 0.5434212000109255, 'gpu_benchmark': {'gpu_name': 'NVIDIA GeForce RTX 3050 6GB Laptop GPU', 'benchmark_time': 5.055665799998678}}}
+>>> # Fetch specific parameters
+>>> requested_params = ['cpu', 'gpu', 'memory', 'os', 'python', 'java', 'benchmarks']
+>>> system_info = fetch_info(requested_params)
+>>> for title, data in system_info.items():
+...     print(f"\n{title}\n")
+...     print(data)
 ```
 
----
+### Example Output
+
+```plaintext
+Operating System Information
+{'System': 'Windows', 'Node': 'Victus_HumaiRA', 'Release': '11', 'Version': '10.0.22631', 'Machine': 'AMD64', 'Processor': 'Intel64 Family 6 Model 186 Stepping 2, GenuineIntel'}
+
+CPU Information
+{'Architecture': 'AMD64', 'Model': 'Intel64 Family 6 Model 186 Stepping 2, GenuineIntel', 'Logical Cores': 12, 'Frequency (MHz)': '2100.0 MHz'}
+
+Memory Information
+{'Virtual Memory (Total) (GB)': '15.67', 'Virtual Memory (Available) (GB)': '5.74', 'Swap Memory (Total) (GB)': '2.87', 'Swap Memory (Free) (GB)': '2.78'}
+
+Python Version
+Python 3.12.4
+
+Java Version
+Java 17.0.1
+
+GPU Information
+ID    Name                                Load   Free Memory (MB)   Used Memory (MB)   Total Memory (MB)   Temperature (C)
+0     NVIDIA GeForce RTX 3050 6GB Laptop GPU   0.00%   6017.00   0.00   6144.00   45.00
+
+Benchmark Results
+{'CPU Benchmark Time (s)': '0.5434', 'GPU Benchmark Time (s)': '5.0557'}
+```
+
+## Available Functions
+
+- **`get_cpu_info()`**: Returns detailed CPU information.
+- **`get_gpu_info()`**: Returns detailed GPU information.
+- **`get_memory_info()`**: Returns detailed memory information.
+- **`get_os_info()`**: Returns detailed OS information.
+- **`get_python_version()`**: Returns the Python version.
+- **`get_java_version()`**: Returns the Java version.
+- **`get_benchmarks()`**: Returns benchmark results for CPU and GPU.
+- **`fetch_info(requested_params)`**: Fetches specific parameters based on the provided list of requests.
+
