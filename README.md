@@ -1,4 +1,4 @@
-# System Info PyPI Package
+# System Info
 
 `system_info` is a Python package that provides detailed information about your system's CPU, GPU, memory, and operating system. It also includes simple benchmarks for the CPU and GPU.
 
