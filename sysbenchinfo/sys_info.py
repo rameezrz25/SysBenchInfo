@@ -31,9 +31,9 @@ def get_gpu_info():
             "ID": gpu.id,
             "Name": gpu.name,
             "Load (%)": gpu.load * 100,
-            "Free Memory (MB)": gpu.memoryFree / 1024,
-            "Used Memory (MB)": gpu.memoryUsed / 1024,
-            "Total Memory (MB)": gpu.memoryTotal / 1024,
+            "Free Memory (GB)": gpu.memoryFree / 1024,
+            "Used Memory (GB)": gpu.memoryUsed / 1024,
+            "Total Memory (GB)": gpu.memoryTotal / 1024,
             "Temperature (°C)": gpu.temperature,
         })
     return gpu_info
